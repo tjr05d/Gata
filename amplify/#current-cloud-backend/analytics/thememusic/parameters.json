@@ -1,0 +1,11 @@
+{
+    "appName": "thememusic",
+    "roleName": "pinpointLambdaRoled1dce727",
+    "cloudWatchPolicyName": "cloudWatchPolicyd1dce727",
+    "pinpointPolicyName": "pinpointPolicyd1dce727",
+    "authPolicyName": "pinpoint_amplify_d1dce727",
+    "unauthPolicyName": "pinpoint_amplify_d1dce727",
+    "authRoleName": "themeusic-20181031161034-authRole",
+    "unauthRoleName": "themeusic-20181031161034-unauthRole",
+    "IAMPrefix": "480517106881"
+}

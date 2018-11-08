@@ -1,0 +1,6 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+
+#Amazon
+src/aws-exports.js

@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "themeusic-20181107130643-authRole",
+            "UnauthRoleArn": "arn:aws:iam::480517106881:role/themeusic-20181107130643-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::480517106881:role/themeusic-20181107130643-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "themeusic-20181107130643-deployment",
+            "UnauthRoleName": "themeusic-20181107130643-unauthRole",
+            "StackName": "themeusic-20181107130643",
+            "StackId": "arn:aws:cloudformation:us-east-2:480517106881:stack/themeusic-20181107130643/e2411a10-e2b7-11e8-bf14-0a981112be0e"
+        }
+    }
+}
