@@ -19,7 +19,7 @@ export default class SignInScreen extends React.Component {
     this.state = {
       username: "",
       password: "",
-      errorMsg: null
+      errorMsg: ""
     }
   }
   
@@ -50,12 +50,14 @@ export default class SignInScreen extends React.Component {
         <KeyboardDismissView style={styles.container}>
           <FormLabel> USERNAME </FormLabel>
           <FormInput
+
             containerStyle={styles.input}
             onChangeText={(username) => this.setState({ username })}
           />
           <FormLabel> PASSWORD </FormLabel>
           <FormInput  
             containerStyle={styles.input}
+            secureTextEntry={true}
             onChangeText={(password) => this.setState({ password })}
           />
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
-import { TextInput } from 'react-native-gesture-handler';
 import Amplify, { Auth } from 'aws-amplify';
 import KeyboardDismissView from './KeyboardDismissView'; 
 import styles from './LoginStyles'; 
@@ -62,6 +61,7 @@ export default class SignInScreen extends React.Component {
           <FormLabel> PASSWORD </FormLabel>
           <FormInput
             containerStyle={styles.input}
+            secureTextEntry={true}
             onChangeText={(password) => this.setState({ password })}
           />
           <FormLabel> EMAIL </FormLabel>

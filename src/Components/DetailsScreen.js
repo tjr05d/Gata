@@ -1,17 +1,17 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 export default class DetailsScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: `User ${navigation.getParam('itemId', 'NO-ID')}`,
-      headerStyle: {
-        backgroundColor: '#CE93D8'
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      }
-    }
+  static navigationOptions = {
+    title: 'Details',
+    headerStyle: {
+      backgroundColor: '#CE93D8'
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    tabBarIcon: <Icon size={25} style={{ color: 'white' }} name="layers"> </Icon>
   }
 
   render() {

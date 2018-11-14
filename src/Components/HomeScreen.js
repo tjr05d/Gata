@@ -1,32 +1,17 @@
 import React from 'react';
 import { Button, ScrollView, Text, TouchableHighlight } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import LogoTitle from './LogoTitle'; 
 import { AsyncStorage } from '@aws-amplify/core';
 import { Auth } from 'aws-amplify';
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return(
-      {
-        headerTitle: <LogoTitle />,
-        headerRight: (
-        <TouchableHighlight
-          onPress={() => {navigation.getParam('increaseCount')}}
-          style={{ margin: 10 }}
-        >
-          <Icon name="plus" size={30} color='#fff' />
-        </TouchableHighlight>
-        ),
-        headerStyle: {
-          backgroundColor:'#5C6BC0'
-        },
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        }
-      }
-    ) 
+  static navigationOptions = {
+    title: "Home",
+    tabBarIcon: <Icon size={25} style={{color: 'white'}} name="home" />
   }
+
   state = {
     count: 0,
   };
