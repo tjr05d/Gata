@@ -4,3 +4,4 @@ npm-debug.*
 
 #Amazon
 src/aws-exports.js
+.amplifyrc

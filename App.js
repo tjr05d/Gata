@@ -1,8 +1,10 @@
-import React from 'react';
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation'; 
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import Amplify from 'aws-amplify';
+import awsExports from './src/aws-exports';
+
 import HomeScreen from './src/Components/HomeScreen';
-import DetailsScreen from './src/Components/DetailsScreen'; 
+import DetailsScreen from './src/Components/DetailsScreen';
 import ShopScreen from './src/Components/Shop';
 import ProfileScreen from './src/Components/Profile';
 import AuthLoadingScreen from './src/Components/AuthLoadingScreen';
@@ -10,9 +12,7 @@ import SignInScreen from './src/Components/SignInScreen';
 import SignUpScreen from './src/Components/SignUpScreen';
 import UserConfirmScreen from './src/Components/UserConfirmScreen';
 
-import Amplify, { Auth } from 'aws-amplify';
-import aws_exports from './src/aws-exports';
-Amplify.configure(aws_exports);
+Amplify.configure(awsExports);
 
 const AppStack = createMaterialBottomTabNavigator(
   {
@@ -29,7 +29,11 @@ const AppStack = createMaterialBottomTabNavigator(
   }
 );
 
-const AuthStack =  createStackNavigator({ SignIn: SignInScreen, SignUp: SignUpScreen, UserConfirm: UserConfirmScreen });
+const AuthStack = createStackNavigator({
+  SignIn: SignInScreen,
+  SignUp: SignUpScreen,
+  UserConfirm: UserConfirmScreen
+});
 
 export default createSwitchNavigator(
   {
