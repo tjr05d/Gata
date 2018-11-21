@@ -1,13 +1,18 @@
 import React from 'react';
-import { AsyncStorage, StyleSheet, View } from 'react-native';
-import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { AsyncStorage, View } from 'react-native';
+import {
+  Button,
+  FormLabel,
+  FormInput,
+  FormValidationMessage
+} from 'react-native-elements';
 import Amplify, { Auth } from 'aws-amplify';
-import aws_exports from '../aws-exports';
+import awsExports from '../aws-exports';
 
 import KeyboardDismissView from './KeyboardDismissView'; 
 import styles from './LoginStyles'; 
 
-Amplify.configure(aws_exports);
+Amplify.configure(awsExports);
 
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
@@ -17,19 +22,19 @@ export default class SignInScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      errorMsg: ""
-    }
+      username: '',
+      password: '',
+      errorMsg: ''
+    };
   }
-  
+
   _signInAsync = async () => {
     const { username, password } = this.state; 
 
     Auth.signIn(username, password)
-      .then(user => {
-        console.log(user);
-        AsyncStorage.setItem('userToken', 'abc')
+      .then(() => {
+        // const { navigation } = this.props;
+        AsyncStorage.setItem('userToken', 'abc');
         this.props.navigation.navigate('App'); 
       })
       .catch(err => {

@@ -1,67 +1,67 @@
 import React from 'react';
-import { Button, ScrollView, Text, TouchableHighlight } from 'react-native';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Button, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import LogoTitle from './LogoTitle'; 
 import { AsyncStorage } from '@aws-amplify/core';
 import { Auth } from 'aws-amplify';
+import { subDays } from 'date-fns';
+
+import PeriodWindow from './PeriodWindow';
+import DeliveryDate from './DeliveryDate';
+import UserBox from './UserBox';
+
+const placeHolderImg = require('../../assets/images/placeholder.png');
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: "Home",
-    tabBarIcon: <Icon size={25} style={{color: 'white'}} name="home" />
+    title: 'Home',
+    tabBarIcon: <Icon size={25} style={{ color: 'white' }} name="home" />
   }
 
   state = {
-    count: 0,
+    expectedPeriodDate: new Date(),
+    expectedDeliveryDate: subDays(new Date(), 10),
+    boxProducts: [ 
+      { title: 'Tampon', img: null, detail: 'Organic and High Quality', quantity: 5, price: '$1.00' },
+      { title: 'Maxi Pad', img: null, detail: 'Organic and High Quality', quantity: 2, price: '$2.50' },
+      { title: 'Advil', img: null, detail: 'Ibuprofin', quantity: 2, price: '$5.00' },
+      { title: 'Heating Pad', img: null, detail: 'Soothes aches and cramps', quantity: 5, price: 'Free'}
+    ],
   };
 
-  componentDidMount() {
-    this.props.navigation.setParams({ increaseCount: this._increaseCount });
-  }
-
-
-  _increaseCount = () => {
-    this.setState({ count: this.state.count + 1 }); 
-  };
-
-  _signOutAsync = async () => {
+  signOutAsync = async ({ navigation }) => {
     await AsyncStorage.clear();
     Auth.signOut()
-      .then(data => {
-        console.log(data)
-        this.props.navigation.navigate('Auth'); 
+      .then((data) => {
+        console.log(data);
+        navigation.navigate('Auth');
       })
       .catch(err => console.log(err));
-
   }
 
-  _checkSession = async () => {
+  checkSession = async () => {
     Auth.currentSession()
       .then(data => console.log(data))
       .catch(err => console.log(err));
   }
 
   render() {
-    const params = { itemId: 86, otherParam: 'anything that I want' }
-    const count = this.state.count;
+    const { navigation } = this.props;
+    const { expectedPeriodDate, expectedDeliveryDate, boxProducts } = this.state;
 
     return (
-      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{textAlign: 'center'}}> Home Screen or whatever {this.state.count} </Text>
-        <Button
-          title="Go to details"
-          onPress={()=> this.props.navigation.navigate('Details', params)}
-        />
-        <Button
-          title="Sign Out"
-          onPress={this._signOutAsync}
-        />
-        <Button
-          title="Session Details"
-          onPress={this._checkSession}
-        />
-      </ScrollView>    
+      <View style={styles.contentContainer}>
+        <PeriodWindow expectedPeriodDate={expectedPeriodDate} />
+        <DeliveryDate date={expectedDeliveryDate} />
+        <UserBox navigation={navigation} boxProducts={boxProducts} />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create(
+  {
+    contentContainer: {
+      flex: 1
+    }
+  }
+);
